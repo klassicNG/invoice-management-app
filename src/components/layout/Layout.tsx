@@ -7,17 +7,28 @@ export const Layout = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen bg-[#F8F8FB] dark:bg-[#141625] transition-colors duration-300 flex flex-col xl:flex-row">
-      {/* Sidebar / Top Nav */}
-      <nav className="z-50 flex xl:flex-col justify-between items-center bg-[#373B53] xl:w-[103px] xl:h-screen xl:rounded-r-3xl w-full h-[72px] md:h-[80px]">
-        
+    <div className="min-h-screen bg-[#F8F8FB] dark:bg-[#141625] transition-colors duration-300">
+
+      {/* Sidebar / Top Nav - NAILED TO THE SCREEN */}
+      <nav className="fixed top-0 left-0 z-50 flex xl:flex-col justify-between items-center bg-[#373B53] xl:w-[103px] xl:h-screen xl:rounded-r-3xl w-full h-[72px] md:h-[80px]">
+
         {/* Logo Area */}
-        <div className="relative flex items-center justify-center bg-[#7C5DFA] w-[72px] h-[72px] md:w-[80px] md:h-[80px] xl:w-full xl:h-[103px] rounded-r-2xl xl:rounded-tr-3xl xl:rounded-br-3xl overflow-hidden">
-          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-[#9277FF] rounded-tl-2xl xl:rounded-tl-3xl z-0"></div>
-          {/* Logo Icon */}
-          <div className="relative z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center">
-            <div className="w-4 h-4 bg-[#7C5DFA] rounded-full filter drop-shadow-md"></div>
-          </div>
+        <div className="relative flex items-center justify-center w-[72px] h-[72px] md:w-[80px] md:h-[80px] xl:w-[103px] xl:h-[103px]">
+          <svg
+            className="w-full h-full"
+            viewBox="0 0 103 103"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M0 0H83C94.0457 0 103 8.9543 103 20V83C103 94.0457 94.0457 103 83 103H0V0Z" fill="#7C5DFA" />
+            <mask id="mask0_1_122" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x="0" y="0" width="103" height="103">
+              <path d="M0 0H83C94.0457 0 103 8.9543 103 20V83C103 94.0457 94.0457 103 83 103H0V0Z" fill="white" />
+            </mask>
+            <g mask="url(#mask0_1_122)">
+              <path d="M103 52H20C8.95431 52 0 60.9543 0 72V135C0 146.046 8.95431 155 20 155H103V52Z" fill="#9277FF" />
+            </g>
+            <path fillRule="evenodd" clipRule="evenodd" d="M42.6942 33.2922L52 52L61.3058 33.2922C67.6645 36.6408 72 43.3141 72 51C72 62.0457 63.0457 71 52 71C40.9543 71 32 62.0457 32 51C32 43.3141 36.3355 36.6408 42.6942 33.2922Z" fill="white" />
+          </svg>
         </div>
 
         {/* Bottom / Right Section */}
@@ -29,11 +40,11 @@ export const Layout = () => {
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          
+
           <div className="w-[1px] h-[72px] md:h-[80px] xl:w-full xl:h-[1px] bg-[#494E6E] xl:my-6 mx-6 xl:mx-0"></div>
-          
+
           {/* User Avatar */}
-          <div 
+          <div
             tabIndex={0}
             role="button"
             aria-label="User Profile"
@@ -44,12 +55,13 @@ export const Layout = () => {
         </div>
       </nav>
 
-      {/* Main Content Area */}
-      <main className="flex-1 overflow-x-hidden overflow-y-auto">
+      {/* Main Content Area - SHIFTED TO ACCOUNT FOR FIXED NAV */}
+      <main className="pt-[72px] md:pt-[80px] xl:pt-0 xl:pl-[103px]">
         <div className="max-w-[730px] mx-auto pt-[32px] md:pt-[56px] xl:pt-[72px] px-6 pb-16">
           <Outlet />
         </div>
       </main>
+
     </div>
   );
 };
